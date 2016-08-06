@@ -11,9 +11,14 @@ class TaskTagsSpec extends FeatureSpec with GivenWhenThen {
 
   feature("Работа с тегами") {
     scenario("Получить список задач по тегу") {
+      val tagName = "позвонить"
+
       Given("задача без тегов")
+      val task = new Task(1, "some desc", false, 0, List[Tag]())
       When("добавляем задаче тег 'позвонить'")
+      val taskWithTag = task.addTag(tagName)
       Then("задача есть в списке задач по тегу 'позвонить'")
+      assert(taskWithTag.tags.contains(Tag(tagName)))
     }
   }
 
